@@ -1,0 +1,45 @@
+ul, li, p, body, div{margin: 0; padding: 0;}
+.nav .nav-item {
+	list-style-type: none;
+}
+.nav .nav-item-selected a, .nav .nav-item a:hover {
+    background-color: #E0ECFF;
+}
+.nav .nav-item a {
+    color: #003399;
+    cursor: pointer;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 20px;
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+
+.cs-north {
+	height:60px;
+}
+.cs-north-bg {
+	width: 100%;
+	height: 100%;
+	background: url(themes/gray/images/header_bg.png) repeat-x;
+}
+.cs-north-logo {
+	height: 40px;
+	margin: 15px 0px 0px 5px;
+	display: inline-block;
+	color:#000000;font-size:22px;font-weight:bold;text-decoration:none
+}
+.cs-west {
+	width:200px;padding:0px;
+}
+.cs-navi-tab {
+	padding: 5px;
+}
+.cs-tab-menu {
+	width:120px;
+}
+.cs-home-remark {
+	padding: 10px;
+}
