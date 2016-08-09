@@ -10,7 +10,6 @@
 	<name>spring-test-parent</name>
 	<url>http://www.cxkc.com</url>
 
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>	
 		<spring.version>4.2.6.RELEASE</spring.version>
