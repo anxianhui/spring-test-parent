@@ -13,7 +13,6 @@
 	
 </head>
 <script type="text/javascript">
-var relative ="${base}";
 
 	//查询
 	function search(){
@@ -51,7 +50,7 @@ $(function(){
 	$('#grid').datagrid({
 		rownumbers:true,
 		fitColumns:true,
-		url: relative + '/admin/user/list.json',
+		url: '${base}/admin/user/list.json',
 		columns: [[   
 		            {field:'userName',title:'用户名',width:120, align: 'center'},
 		            {field:'isEnabled',title:'状态',width:120, align: 'center',
