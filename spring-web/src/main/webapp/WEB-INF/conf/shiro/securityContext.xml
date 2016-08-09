@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+	  http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc
+      http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<bean id="credentialsMatcher"
+		class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+		<property name="hashAlgorithmName" value="SHA-256" />
+		<!-- true means hex encoded, false means base64 encoded -->
+		<property name="storedCredentialsHexEncoded" value="false" />
+	</bean>
+
+	<bean id="dbRealm" class="web.shiro.DbRealm">
+		<property name="credentialsMatcher" ref="credentialsMatcher" />
+	</bean>
+	
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="dbRealm" />
+	</bean>
+	
+	<!--shiro主过滤器的配置，这里的名字和web中的要对应  -->  
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+	    <!-- 集成上安全管理器 -->  
+	  	<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login.htm" />
+		<property name="successUrl" value="/index.htm" />
+		<property name="unauthorizedUrl" value="/unauthorized.htm" />
+	    <property name="filterChainDefinitions">
+			<value>
+				/signup.htm = anon
+				/login.htm = anon
+				/admin/user/** = perms["admin:user"]
+				/admin/role/** = perms["admin:role"]
+				/** = anon
+			</value>
+		</property>
+	</bean>  
+	
+</beans>
